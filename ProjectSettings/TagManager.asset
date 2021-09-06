@@ -8,6 +8,7 @@ TagManager:
   - Fabric
   - Storage
   - Shelter
+  - Robot
   layers:
   - Default
   - TransparentFX

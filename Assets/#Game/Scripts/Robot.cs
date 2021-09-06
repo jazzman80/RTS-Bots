@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Robot : MonoBehaviour
 {
-    private enum State
+    public enum State
     {
         idle,
         moveToPoint,
@@ -18,7 +18,7 @@ public class Robot : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
 
     bool selected = false;
-    State state = State.idle;
+    public State state = State.idle;
 
     private void Update()
     {
