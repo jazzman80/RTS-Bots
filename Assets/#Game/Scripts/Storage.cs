@@ -8,10 +8,21 @@ public class Storage : MonoBehaviour
     [SerializeField] Transform generationPoint;
     
     List<Box> boxPool = new List<Box>();
+    Box activeBox;
 
     private void Start()
     {
         GenerateBox();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Robot"))
+        {
+            Robot robot = other.gameObject.GetComponent<Robot>();
+
+            if (robot.NeedsBox()) activeBox.LinkToRobot(robot.boxPoint);
+        }
     }
 
     private void GenerateBox()
@@ -24,6 +35,7 @@ public class Storage : MonoBehaviour
             {
                 box.gameObject.SetActive(true);
                 box.ResetPosition(generationPoint);
+                activeBox = box;
                 needsInstantiation = false;
                 break;
             }
@@ -33,6 +45,7 @@ public class Storage : MonoBehaviour
         {
             Box box = Instantiate(boxPrefab);
             box.ResetPosition(generationPoint);
+            activeBox = box;
             boxPool.Add(box);
         }
     }

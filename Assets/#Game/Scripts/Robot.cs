@@ -5,7 +5,9 @@ using UnityEngine.AI;
 
 public class Robot : MonoBehaviour
 {
-    public enum State
+    public Transform boxPoint;
+    
+    private enum State
     {
         idle,
         moveToPoint,
@@ -18,7 +20,7 @@ public class Robot : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
 
     bool selected = false;
-    public State state = State.idle;
+    State state = State.idle;
 
     private void Update()
     {
@@ -76,5 +78,11 @@ public class Robot : MonoBehaviour
     {
         selectMarker.SetActive(false);
         selected = false;
+    }
+
+    public bool NeedsBox()
+    {
+        if (state == State.moveToStorage) return true;
+        else return false;
     }
 }
