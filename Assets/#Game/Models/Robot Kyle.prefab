@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectMarker: {fileID: 1038217625235504766}
+  agent: {fileID: -1146614042750159712}
 --- !u!65 &7696006008971373689
 BoxCollider:
   m_ObjectHideFlags: 0
