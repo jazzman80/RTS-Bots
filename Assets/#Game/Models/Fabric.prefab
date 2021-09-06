@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 7732207173623869812}
   - component: {fileID: 7732207173625164116}
   - component: {fileID: 7732207173626164116}
-  - component: {fileID: 7732207173614509716}
+  - component: {fileID: 433974056975798012}
   m_Layer: 0
   m_Name: Fabric
-  m_TagString: Untagged
+  m_TagString: Fabric
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -82,22 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &7732207173614509716
-Animator:
-  serializedVersion: 3
+--- !u!65 &433974056975798012
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7732207173623901524}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 77e2786092de7884cb55862082b58c56, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  serializedVersion: 2
+  m_Size: {x: 19.117718, y: 18.48574, z: 6.798713}
+  m_Center: {x: 0, y: 0.0000042915353, z: -0.00000011920932}
