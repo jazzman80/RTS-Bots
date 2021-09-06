@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public class Robot : MonoBehaviour
 {
-    public Transform boxPoint;
-    
     private enum State
     {
         idle,
@@ -15,11 +13,13 @@ public class Robot : MonoBehaviour
         moveToFabric,
         moveToShelter
     }
-    
+
+    [SerializeField] Transform boxPoint;
     [SerializeField] GameObject selectMarker;
     [SerializeField] NavMeshAgent agent;
 
     bool selected = false;
+    bool haveBox = false;
     State state = State.idle;
 
     private void Update()
@@ -82,7 +82,13 @@ public class Robot : MonoBehaviour
 
     public bool NeedsBox()
     {
-        if (state == State.moveToStorage) return true;
+        if (state == State.moveToStorage && !haveBox) return true;
         else return false;
+    }
+
+    public void TakeBox(Box box)
+    {
+        haveBox = true;
+        box.LinkToRobot(boxPoint);
     }
 }

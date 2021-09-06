@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7935d571f78da584ead6947cb10c6df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxGenerationDelay: 10
   boxPrefab: {fileID: 641462868452008432, guid: e00d872e5a18c6d49af037a5b3565f5e, type: 3}
   generationPoint: {fileID: 394237295653857056}
 --- !u!54 &3813327788088946935

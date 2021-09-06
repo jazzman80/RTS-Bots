@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Storage : MonoBehaviour
 {
+    [SerializeField] float boxGenerationDelay;
     [SerializeField] Box boxPrefab;
     [SerializeField] Transform generationPoint;
     
@@ -21,7 +22,11 @@ public class Storage : MonoBehaviour
         {
             Robot robot = other.gameObject.GetComponent<Robot>();
 
-            if (robot.NeedsBox()) activeBox.LinkToRobot(robot.boxPoint);
+            if (robot.NeedsBox())
+            {
+                robot.TakeBox(activeBox);
+                GenerateBox();
+            }
         }
     }
 
@@ -49,4 +54,6 @@ public class Storage : MonoBehaviour
             boxPool.Add(box);
         }
     }
+
+
 }
