@@ -26,45 +26,32 @@ public class Robot : MonoBehaviour
 
     private void Update()
     {
-        if (selected && Input.GetMouseButtonDown(1))
-        {
-            if(!Input.GetKey(KeyCode.LeftShift))
-            {
-                ResetTaskPool();
-                SetTask();
-                SetActiveTask(taskPool[0]);
-            }
-            else SetTask();
-        }
-
-        if (agent.remainingDistance == 0) state = State.idle;
-
-        // if idle and taskPool not empty start new task
-        if (state == State.idle && taskPool.Count > 1)
+        if(agent.remainingDistance <= agent.stoppingDistance && taskPool.Count !=0)
         {
             taskIndex++;
-            if (taskIndex == taskPool.Count) taskIndex = 0;
+            if (taskIndex >= taskPool.Count) taskIndex = 0;
+
             SetActiveTask(taskPool[taskIndex]);
         }
     }
 
-    private void ResetTaskPool()
+    public void OnSingleTask(Task task)
     {
-        taskPool.Clear();
-        taskIndex = 0;
+        if (selected)
+        {
+            taskPool.Clear();
+            taskIndex = 0;
+
+            SetActiveTask(task);
+            taskPool.Add(task);
+        }
     }
 
-    private void SetTask()
+    public void OnPoolTask(Task task)
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if(Physics.Raycast(ray, out hit))
+        if (selected)
         {
-            Task newTask = new Task();
-            newTask.SetData(hit);
-            //SetActiveTask(newTask);
-            taskPool.Add(newTask);
+            taskPool.Add(task);
         }
     }
 

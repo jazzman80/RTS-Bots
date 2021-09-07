@@ -25,14 +25,11 @@ public class Task
         {
             target = hit.collider.gameObject.GetComponent<Building>().TargetPoint.position;
         }
-
-        Debug.Log("Set position");
     }
 
     private void SetName(string tag)
     {
         taskName = "Move to " + tag;
-        Debug.Log("Name " + taskName);
     }
 
     private void SetState(string tag)
@@ -55,7 +52,5 @@ public class Task
                 state = Robot.State.moveToShelter;
                 break;
         }
-
-        Debug.Log("Tag " + tag);
     }
 }
