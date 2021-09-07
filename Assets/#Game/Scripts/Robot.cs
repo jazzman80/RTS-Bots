@@ -19,18 +19,35 @@ public class Robot : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
 
     Queue<Task> taskPool = new Queue<Task>();
+    List<Task> tasksPool = new List<Task>();
+    int taskIndex = 0;
     bool selected = false;
     bool haveBox = false;
     State state = State.idle;
 
     private void Update()
     {
-        if (selected && Input.GetMouseButtonDown(1)) SetTask();
+        if (selected && Input.GetMouseButtonDown(1))
+        {
+            if(!Input.GetKey(KeyCode.LeftShift)) ResetTaskPool();
+            SetTask();
+        }
 
         if (agent.remainingDistance == 0) state = State.idle;
 
         // if idle and taskPool not empty start new task
-        if (state == State.idle && taskPool.Count != 0) SetActiveTask(taskPool.Dequeue());
+        if (state == State.idle && tasksPool.Count > 1)
+        {
+            taskIndex++;
+            if (taskIndex == tasksPool.Count) taskIndex = 0;
+            SetActiveTask(tasksPool[taskIndex]);
+        }
+    }
+
+    private void ResetTaskPool()
+    {
+        tasksPool.Clear();
+        taskIndex = 0;
     }
 
     private void SetTask()
@@ -44,7 +61,9 @@ public class Robot : MonoBehaviour
         {
             Task newTask = new Task();
             newTask.SetData(hit);
-            taskPool.Enqueue(newTask);
+            //taskPool.Enqueue(newTask);
+            SetActiveTask(newTask);
+            tasksPool.Add(newTask);
         }
     }
 

@@ -7,7 +7,6 @@ public class Task
     public string taskName;
     public Robot.State state;
     public Vector3 target;
-    
 
     public void SetData(RaycastHit hit)
     {
@@ -20,6 +19,12 @@ public class Task
     private void SetTarget(RaycastHit hit)
     {
         target = hit.point;
+
+        if (taskName == "Move to Terrain") target = hit.point;
+        else
+        {
+            target = hit.collider.gameObject.GetComponent<Building>().TargetPoint.position;
+        }
 
         Debug.Log("Set position");
     }
