@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Robot : MonoBehaviour
 {
-    private enum State
+    public enum State
     {
         idle,
         moveToPoint,
@@ -18,16 +18,17 @@ public class Robot : MonoBehaviour
     [SerializeField] GameObject selectMarker;
     [SerializeField] NavMeshAgent agent;
 
+    Queue<Task> taskPool = new Queue<Task>();
     bool selected = false;
     bool haveBox = false;
     State state = State.idle;
 
     private void Update()
     {
-        if (selected && Input.GetMouseButtonDown(1)) SetTarget();
+        if (selected && Input.GetMouseButtonDown(1)) SetTask();
     }
 
-    private void SetTarget()
+    private void SetTask()
     {
         Deselect();
 
@@ -36,29 +37,9 @@ public class Robot : MonoBehaviour
 
         if(Physics.Raycast(ray, out hit))
         {
-            agent.SetDestination(hit.point);
-
-            string objectType = hit.collider.gameObject.tag;
-            Debug.Log("I'm move to " + objectType);
-
-            switch (objectType)
-            {
-                case "Terrain":
-                    state = State.moveToPoint;
-                    break;
-
-                case "Fabric":
-                    state = State.moveToFabric;
-                    break;
-
-                case "Storage":
-                    state = State.moveToStorage;
-                    break;
-
-                case "Shelter":
-                    state = State.moveToShelter;
-                    break;
-            }
+            Task newTask = new Task();
+            newTask.SetData(hit);
+            taskPool.Enqueue(newTask);
         }
     }
 
