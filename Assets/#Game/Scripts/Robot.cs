@@ -26,11 +26,16 @@ public class Robot : MonoBehaviour
     private void Update()
     {
         if (selected && Input.GetMouseButtonDown(1)) SetTask();
+
+        if (agent.remainingDistance == 0) state = State.idle;
+
+        // if idle and taskPool not empty start new task
+        if (state == State.idle && taskPool.Count != 0) SetActiveTask(taskPool.Dequeue());
     }
 
     private void SetTask()
     {
-        Deselect();
+        //Deselect();
 
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -41,6 +46,12 @@ public class Robot : MonoBehaviour
             newTask.SetData(hit);
             taskPool.Enqueue(newTask);
         }
+    }
+
+    private void SetActiveTask(Task task)
+    {
+        agent.destination = task.target;
+        state = task.state;
     }
 
     private void OnMouseDown()

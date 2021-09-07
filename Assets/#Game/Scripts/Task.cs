@@ -4,30 +4,33 @@ using UnityEngine;
 
 public class Task
 {
-    Transform target;
-    string name;
-    Robot.State state;
+    public string taskName;
+    public Robot.State state;
+    public Vector3 target;
+    
 
     public void SetData(RaycastHit hit)
     {
         string tag = hit.collider.gameObject.tag;
-
-        SetName(hit, tag);
-        SetState(hit, tag);
+        SetName(tag);
+        SetState(tag);
         SetTarget(hit);
     }
 
     private void SetTarget(RaycastHit hit)
     {
-        target.position = hit.point;
+        target = hit.point;
+
+        Debug.Log("Set position");
     }
 
-    private void SetName(RaycastHit hit, string tag)
+    private void SetName(string tag)
     {
-        name = "Move to " + tag;
+        taskName = "Move to " + tag;
+        Debug.Log("Name " + taskName);
     }
 
-    private void SetState(RaycastHit hit, string tag)
+    private void SetState(string tag)
     {
         switch (tag)
         {
@@ -47,5 +50,7 @@ public class Task
                 state = Robot.State.moveToShelter;
                 break;
         }
+
+        Debug.Log("Tag " + tag);
     }
 }
