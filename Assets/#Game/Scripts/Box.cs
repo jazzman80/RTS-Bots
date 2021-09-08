@@ -27,4 +27,12 @@ public class Box : MonoBehaviour
         robotTransform = newRobotTransform;
         isTransported = true;
     }
+
+    public void LinkToFabric(Transform fabricTransform)
+    {
+        isTransported = false;
+        transform.position = fabricTransform.position;
+        transform.rotation = fabricTransform.rotation;
+        gameObject.SetActive(false);
+    }
 }
