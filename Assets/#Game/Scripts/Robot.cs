@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Robot : MonoBehaviour
 {
-    private enum State
+    public enum State
     {
         idle,
         moveToPoint,
@@ -18,48 +18,49 @@ public class Robot : MonoBehaviour
     [SerializeField] GameObject selectMarker;
     [SerializeField] NavMeshAgent agent;
 
+    List<Task> taskPool = new List<Task>();
+    int taskIndex = 0;
     bool selected = false;
     bool haveBox = false;
     State state = State.idle;
 
     private void Update()
     {
-        if (selected && Input.GetMouseButtonDown(1)) SetTarget();
-    }
-
-    private void SetTarget()
-    {
-        Deselect();
-
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if(Physics.Raycast(ray, out hit))
+        if (taskPool.Count != 0)
         {
-            agent.SetDestination(hit.point);
-
-            string objectType = hit.collider.gameObject.tag;
-            Debug.Log("I'm move to " + objectType);
-
-            switch (objectType)
+            if (agent.remainingDistance == 0 && taskPool.Count > 1)
             {
-                case "Terrain":
-                    state = State.moveToPoint;
-                    break;
-
-                case "Fabric":
-                    state = State.moveToFabric;
-                    break;
-
-                case "Storage":
-                    state = State.moveToStorage;
-                    break;
-
-                case "Shelter":
-                    state = State.moveToShelter;
-                    break;
+                SetActiveTask(taskPool[taskIndex]);
+                taskIndex++;
+                if (taskIndex >= taskPool.Count) taskIndex = 0;
             }
         }
+    }
+
+    public void OnSingleTask(Task task)
+    {
+        if (selected)
+        {
+            taskPool.Clear();
+            taskIndex = 0;
+
+            SetActiveTask(task);
+            taskPool.Add(task);
+        }
+    }
+
+    public void OnPoolTask(Task task)
+    {
+        if (selected)
+        {
+            taskPool.Add(task);
+        }
+    }
+
+    private void SetActiveTask(Task task)
+    {
+        agent.destination = task.target;
+        state = task.state;
     }
 
     private void OnMouseDown()
