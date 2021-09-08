@@ -92,4 +92,9 @@ public class Robot : MonoBehaviour
         haveBox = true;
         box.LinkToRobot(boxPoint);
     }
+
+    public void GiveBox()
+    {
+        haveBox = false;
+    }
 }
