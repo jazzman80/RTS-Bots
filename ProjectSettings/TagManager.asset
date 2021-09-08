@@ -9,6 +9,7 @@ TagManager:
   - Storage
   - Shelter
   - Robot
+  - Box
   layers:
   - Default
   - TransparentFX
