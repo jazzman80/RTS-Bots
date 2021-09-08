@@ -276,6 +276,7 @@ MonoBehaviour:
   boxPoint: {fileID: 6365761571410853841}
   selectMarker: {fileID: 1038217625235504766}
   agent: {fileID: -1146614042750159712}
+  stoppingDistance: 1
 --- !u!65 &7696006008971373689
 BoxCollider:
   m_ObjectHideFlags: 0

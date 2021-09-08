@@ -8,7 +8,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] TaskEvent singleTask;
     [SerializeField] TaskEvent poolTask;
 
-    Task newTask = new Task();
+    Task nullTask = new Task();
 
     private void Update()
     {
@@ -16,16 +16,22 @@ public class PlayerInput : MonoBehaviour
         {
             SetTask();
 
-            if (Input.GetKey(KeyCode.LeftShift)) poolTask.Raise(newTask);
-            else singleTask.Raise(newTask);
+            if (Input.GetKey(KeyCode.LeftShift)) poolTask.Raise(SetTask());
+            else singleTask.Raise(SetTask());
         }
     }
 
-    private void SetTask()
+    private Task SetTask()
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit)) newTask.SetData(hit);
+        if (Physics.Raycast(ray, out hit))
+        {
+            Task newTask = new Task();
+            newTask.SetData(hit);
+            return newTask;
+        }
+        else return nullTask;
     }
 }

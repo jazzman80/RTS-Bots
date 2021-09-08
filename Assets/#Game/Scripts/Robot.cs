@@ -26,12 +26,14 @@ public class Robot : MonoBehaviour
 
     private void Update()
     {
-        if(agent.remainingDistance <= agent.stoppingDistance && taskPool.Count !=0)
+        if (taskPool.Count != 0)
         {
-            taskIndex++;
-            if (taskIndex >= taskPool.Count) taskIndex = 0;
-
-            SetActiveTask(taskPool[taskIndex]);
+            if (agent.remainingDistance == 0 && taskPool.Count > 1)
+            {
+                SetActiveTask(taskPool[taskIndex]);
+                taskIndex++;
+                if (taskIndex >= taskPool.Count) taskIndex = 0;
+            }
         }
     }
 
