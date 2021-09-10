@@ -16,10 +16,15 @@ public struct Task
         SetTarget(hit);
     }
 
+    public void SetAlarmData(Transform shelterPoint)
+    {
+        SetName("Shelter");
+        SetState("Shelter");
+        target = shelterPoint.position;
+    }
+
     private void SetTarget(RaycastHit hit)
     {
-        target = hit.point;
-
         if (taskName == "Move to Terrain") target = hit.point;
         else
         {

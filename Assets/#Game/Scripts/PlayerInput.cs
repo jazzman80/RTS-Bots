@@ -7,6 +7,8 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] TaskEvent singleTask;
     [SerializeField] TaskEvent poolTask;
+    [SerializeField] TaskEvent alarmTask;
+    [SerializeField] Transform shelterPoint;
 
     Task newTask;
 
@@ -27,7 +29,12 @@ public class PlayerInput : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit)) newTask.SetData(hit);
+    }
 
+    public void OnAlarm()
+    {
+        newTask.SetAlarmData(shelterPoint);
+        alarmTask.Raise(newTask);
     }
 }
 
