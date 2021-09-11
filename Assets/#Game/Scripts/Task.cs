@@ -16,10 +16,15 @@ public struct Task
         SetTarget(hit);
     }
 
+    public void SetData(Transform point, string name)
+    {
+        SetName(name);
+        SetState(name);
+        target = point.position;
+    }
+
     private void SetTarget(RaycastHit hit)
     {
-        target = hit.point;
-
         if (taskName == "Move to Terrain") target = hit.point;
         else
         {

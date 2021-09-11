@@ -17,29 +17,39 @@ public class Robot : MonoBehaviour
     [SerializeField] Transform boxPoint;
     [SerializeField] GameObject selectMarker;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] GameEvent robotSelect;
 
     List<Task> taskPool = new List<Task>();
     int taskIndex = 0;
     bool selected = false;
+    bool alarm = false;
     bool haveBox = false;
     State state = State.idle;
+    Task startTask;
+
+    private void Start()
+    {
+        startTask.SetData(transform, "Idle");
+        SetActiveTask(startTask);
+        taskPool.Add(startTask);
+    }
 
     private void Update()
     {
-        if (taskPool.Count != 0)
+
+        if (agent.remainingDistance == 0 && taskPool.Count > 1 && !alarm)
         {
-            if (agent.remainingDistance == 0 && taskPool.Count > 1)
-            {
-                SetActiveTask(taskPool[taskIndex]);
-                taskIndex++;
-                if (taskIndex >= taskPool.Count) taskIndex = 0;
-            }
+            taskIndex++;
+            if (taskIndex >= taskPool.Count) taskIndex = 0;
+
+            SetActiveTask(taskPool[taskIndex]);
         }
+
     }
 
     public void OnSingleTask(Task task)
     {
-        if (selected)
+        if (selected && !alarm)
         {
             taskPool.Clear();
             taskIndex = 0;
@@ -51,10 +61,22 @@ public class Robot : MonoBehaviour
 
     public void OnPoolTask(Task task)
     {
-        if (selected)
+        if (selected && !alarm)
         {
             taskPool.Add(task);
         }
+    }
+
+    public void OnAlarmTask(Task task)
+    {
+        alarm = true;
+        SetActiveTask(task);
+    }
+
+    public void OnAlarmStop()
+    {
+        alarm = false;
+        SetActiveTask(taskPool[taskIndex]);
     }
 
     private void SetActiveTask(Task task)
@@ -71,11 +93,12 @@ public class Robot : MonoBehaviour
 
     private void Select()
     {
+        robotSelect.Raise();
         selectMarker.SetActive(true);
         selected = true;
     }
 
-    private void Deselect()
+    public void Deselect()
     {
         selectMarker.SetActive(false);
         selected = false;

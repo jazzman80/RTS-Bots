@@ -199,6 +199,9 @@ GameObject:
   - component: {fileID: 7696006008971373689}
   - component: {fileID: 3998968249229344847}
   - component: {fileID: 7290385281364569396}
+  - component: {fileID: 1238330362686522300}
+  - component: {fileID: 8459208703861717847}
+  - component: {fileID: 3481870860611441238}
   m_Layer: 0
   m_Name: Robot Kyle
   m_TagString: Robot
@@ -276,7 +279,7 @@ MonoBehaviour:
   boxPoint: {fileID: 6365761571410853841}
   selectMarker: {fileID: 1038217625235504766}
   agent: {fileID: -1146614042750159712}
-  stoppingDistance: 1
+  robotSelect: {fileID: 11400000, guid: a9b7243dd9f82e9439206dd7f523a35d, type: 2}
 --- !u!65 &7696006008971373689
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -338,6 +341,90 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Robot, Assembly-CSharp
         m_MethodName: OnPoolTask
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1238330362686522300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750643492464830651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ddddb0e571ac8e4aa4cd4b63b1c770a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 45390c7b21eafc74885cd97ef65960ad, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4529955418562070622}
+        m_TargetAssemblyTypeName: Robot, Assembly-CSharp
+        m_MethodName: OnAlarmTask
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8459208703861717847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750643492464830651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a75375636079d48b0c6e5d178b94b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 3fa1359d78c994c40881c2a9903a097f, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4529955418562070622}
+        m_TargetAssemblyTypeName: Robot, Assembly-CSharp
+        m_MethodName: OnAlarmStop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3481870860611441238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750643492464830651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a75375636079d48b0c6e5d178b94b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: a9b7243dd9f82e9439206dd7f523a35d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4529955418562070622}
+        m_TargetAssemblyTypeName: Robot, Assembly-CSharp
+        m_MethodName: Deselect
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
