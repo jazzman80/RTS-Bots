@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 7290385281364569396}
   - component: {fileID: 1238330362686522300}
   - component: {fileID: 8459208703861717847}
+  - component: {fileID: 3481870860611441238}
   m_Layer: 0
   m_Name: Robot Kyle
   m_TagString: Robot
@@ -278,6 +279,7 @@ MonoBehaviour:
   boxPoint: {fileID: 6365761571410853841}
   selectMarker: {fileID: 1038217625235504766}
   agent: {fileID: -1146614042750159712}
+  robotSelect: {fileID: 11400000, guid: a9b7243dd9f82e9439206dd7f523a35d, type: 2}
 --- !u!65 &7696006008971373689
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -394,6 +396,34 @@ MonoBehaviour:
       - m_Target: {fileID: 4529955418562070622}
         m_TargetAssemblyTypeName: Robot, Assembly-CSharp
         m_MethodName: OnAlarmStop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3481870860611441238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750643492464830651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a75375636079d48b0c6e5d178b94b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: a9b7243dd9f82e9439206dd7f523a35d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4529955418562070622}
+        m_TargetAssemblyTypeName: Robot, Assembly-CSharp
+        m_MethodName: Deselect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

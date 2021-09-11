@@ -17,6 +17,7 @@ public class Robot : MonoBehaviour
     [SerializeField] Transform boxPoint;
     [SerializeField] GameObject selectMarker;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] GameEvent robotSelect;
 
     List<Task> taskPool = new List<Task>();
     int taskIndex = 0;
@@ -92,11 +93,12 @@ public class Robot : MonoBehaviour
 
     private void Select()
     {
+        robotSelect.Raise();
         selectMarker.SetActive(true);
         selected = true;
     }
 
-    private void Deselect()
+    public void Deselect()
     {
         selectMarker.SetActive(false);
         selected = false;
