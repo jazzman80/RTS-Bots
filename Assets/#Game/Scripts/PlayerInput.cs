@@ -14,6 +14,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
+      
         if (Input.GetMouseButtonDown(1))
         {
             SetTask();
@@ -33,7 +34,7 @@ public class PlayerInput : MonoBehaviour
 
     public void OnAlarm()
     {
-        newTask.SetAlarmData(shelterPoint);
+        newTask.SetData(shelterPoint, "Shelter");
         alarmTask.Raise(newTask);
     }
 }

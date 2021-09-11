@@ -24,6 +24,14 @@ public class Robot : MonoBehaviour
     bool alarm = false;
     bool haveBox = false;
     State state = State.idle;
+    Task startTask;
+
+    private void Start()
+    {
+        startTask.SetData(transform, "Idle");
+        SetActiveTask(startTask);
+        taskPool.Add(startTask);
+    }
 
     private void Update()
     {

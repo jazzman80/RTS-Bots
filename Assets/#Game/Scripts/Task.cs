@@ -16,11 +16,11 @@ public struct Task
         SetTarget(hit);
     }
 
-    public void SetAlarmData(Transform shelterPoint)
+    public void SetData(Transform point, string name)
     {
-        SetName("Shelter");
-        SetState("Shelter");
-        target = shelterPoint.position;
+        SetName(name);
+        SetState(name);
+        target = point.position;
     }
 
     private void SetTarget(RaycastHit hit)
