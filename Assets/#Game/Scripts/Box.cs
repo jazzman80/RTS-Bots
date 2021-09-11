@@ -40,6 +40,12 @@ public class Box : MonoBehaviour
         isTransported = false;
         transform.position = fabricTransform.position;
         transform.rotation = fabricTransform.rotation;
+        animator.Play("Box Recycle");
+    }
+
+    public void OnRecycleAnimationDone()
+    {
         gameObject.SetActive(false);
     }
+
 }
