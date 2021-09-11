@@ -1940,6 +1940,10 @@ PrefabInstance:
       value: 2d ring target 1 Green
       objectReference: {fileID: 0}
     - target: {fileID: 1180672090123032, guid: 5d4fd87639fae7344aec91e10766c92a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180672090123032, guid: 5d4fd87639fae7344aec91e10766c92a, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
