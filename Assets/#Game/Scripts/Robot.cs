@@ -18,6 +18,7 @@ public class Robot : MonoBehaviour
     [SerializeField] GameObject selectMarker;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GameEvent robotSelect;
+    [SerializeField] Animator animator;
 
     List<Task> taskPool = new List<Task>();
     int taskIndex = 0;
@@ -25,6 +26,7 @@ public class Robot : MonoBehaviour
     bool alarm = false;
     bool haveBox = false;
     State state = State.idle;
+    State previousSate = State.idle;
     Task startTask;
 
     private void Start()
@@ -36,6 +38,9 @@ public class Robot : MonoBehaviour
 
     private void Update()
     {
+        if (previousSate != state) ChangeAnimation();
+
+        previousSate = state;
 
         if (agent.remainingDistance == 0 && taskPool.Count > 1 && !alarm)
         {
@@ -44,7 +49,7 @@ public class Robot : MonoBehaviour
 
             SetActiveTask(taskPool[taskIndex]);
         }
-
+        else if (agent.remainingDistance == 0 && taskPool.Count == 1) state = State.idle;
     }
 
     public void OnSingleTask(Task task)
@@ -119,5 +124,19 @@ public class Robot : MonoBehaviour
     public void GiveBox()
     {
         haveBox = false;
+    }
+
+    private void ChangeAnimation()
+    {
+        if(state == State.idle)
+        {
+            animator.ResetTrigger("Walk");
+            animator.SetTrigger("Stop");
+        }
+        else
+        {
+            animator.ResetTrigger("Stop");
+            animator.SetTrigger("Walk");
+        }
     }
 }
