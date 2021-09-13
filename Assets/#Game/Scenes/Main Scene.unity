@@ -428,6 +428,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Robot Kyle
       objectReference: {fileID: 0}
+    - target: {fileID: 750643492464830651, guid: 4841a094cc64130498b03300954b893a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4337401433009019560, guid: 4841a094cc64130498b03300954b893a, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -1589,6 +1593,10 @@ PrefabInstance:
     - target: {fileID: 750643492464830651, guid: 4841a094cc64130498b03300954b893a, type: 3}
       propertyPath: m_Name
       value: Robot Kyle 02
+      objectReference: {fileID: 0}
+    - target: {fileID: 750643492464830651, guid: 4841a094cc64130498b03300954b893a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4337401433009019560, guid: 4841a094cc64130498b03300954b893a, type: 3}
       propertyPath: m_RootOrder
