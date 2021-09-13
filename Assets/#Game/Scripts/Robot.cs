@@ -20,10 +20,12 @@ public class Robot : MonoBehaviour
     [SerializeField] GameEvent robotInShelter;
 
     List<Task> taskPool = new List<Task>();
+    UIManager uiManager;
     int taskIndex = 0;
     bool selected = false;
     bool alarm = false;
     bool haveBox = false;
+    bool idle = true;
     Task startTask;
     State state;
 
@@ -44,6 +46,8 @@ public class Robot : MonoBehaviour
 
             SetActiveTask(taskPool[taskIndex]);
         }
+
+        SetIdle();
     }
 
     private bool ReachedTarget()
@@ -52,9 +56,24 @@ public class Robot : MonoBehaviour
         else return false;
     }
 
-    public void SetPosition(Transform spawnerPosition, float instantiationDistance)
+    private void SetIdle()
     {
-        transform.position = spawnerPosition.position + new Vector3(instantiationDistance, instantiationDistance, 0); 
+        if(selected && !idle && agent.velocity.magnitude == 0)
+        {
+            idle = true;
+            uiManager.SetIdleState();
+        }
+        else if (selected && idle && agent.velocity.magnitude > 0)
+        {
+            idle = false;
+            uiManager.ShowTaskList(taskPool);
+        }
+    }
+
+    public void SetData(Transform spawnerPosition, float instantiationDistance, UIManager manager)
+    {
+        transform.position = spawnerPosition.position + new Vector3(instantiationDistance, instantiationDistance, 0);
+        uiManager = manager;
     }
 
     public void OnSingleTask(Task task)
@@ -66,6 +85,8 @@ public class Robot : MonoBehaviour
 
             SetActiveTask(task);
             taskPool.Add(task);
+
+            uiManager.ShowTaskList(taskPool);
         }
     }
 
@@ -74,6 +95,8 @@ public class Robot : MonoBehaviour
         if (selected && !alarm)
         {
             taskPool.Add(task);
+
+            uiManager.ShowTaskList(taskPool);
         }
     }
 
@@ -97,7 +120,12 @@ public class Robot : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!selected) Select();
+        if (!selected)
+        {
+            Select();
+            if (agent.velocity.magnitude == 0) uiManager.SetIdleState();
+            else uiManager.ShowTaskList(taskPool);
+        }
         else Deselect();
     }
 

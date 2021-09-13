@@ -5,6 +5,7 @@ using UnityEngine;
 public class RobotSpawner : MonoBehaviour
 {
     [SerializeField] Robot robotPrefab;
+    [SerializeField] UIManager uiManager;
     [SerializeField] int robotsCount;
     [SerializeField] float instantiationDistance;
 
@@ -17,7 +18,7 @@ public class RobotSpawner : MonoBehaviour
         for(int i = 0; i < robotsCount; i++)
         {
             Robot newRobot = Instantiate(robotPrefab);
-            newRobot.SetPosition(transform, i * instantiationDistance);
+            newRobot.SetData(transform, i * instantiationDistance, uiManager);
             robotsPool.Add(newRobot);
         }
     }
