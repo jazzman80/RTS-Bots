@@ -52,6 +52,11 @@ public class Robot : MonoBehaviour
         else return false;
     }
 
+    public void SetPosition(Transform spawnerPosition, float instantiationDistance)
+    {
+        transform.position = spawnerPosition.position + new Vector3(instantiationDistance, instantiationDistance, 0); 
+    }
+
     public void OnSingleTask(Task task)
     {
         if (selected && !alarm)
