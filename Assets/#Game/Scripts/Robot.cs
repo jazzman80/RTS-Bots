@@ -7,7 +7,6 @@ public class Robot : MonoBehaviour
 {
     public enum State
     {
-        idle,
         moveToPoint,
         moveToStorage,
         moveToFabric,
@@ -25,31 +24,32 @@ public class Robot : MonoBehaviour
     bool selected = false;
     bool alarm = false;
     bool haveBox = false;
-    State state = State.idle;
-    State previousSate = State.idle;
     Task startTask;
+    State state;
 
     private void Start()
     {
-        startTask.SetData(transform, "Idle");
+        startTask.SetData(transform, "Terrain");
         SetActiveTask(startTask);
         taskPool.Add(startTask);
     }
 
     private void Update()
     {
-        if (previousSate != state) ChangeAnimation();
 
-        previousSate = state;
-
-        if (agent.remainingDistance == 0 && taskPool.Count > 1 && !alarm)
+        if (ReachedTarget() && taskPool.Count > 1 && !alarm)
         {
             taskIndex++;
             if (taskIndex >= taskPool.Count) taskIndex = 0;
 
             SetActiveTask(taskPool[taskIndex]);
         }
-        else if (agent.remainingDistance == 0 && taskPool.Count == 1) state = State.idle;
+    }
+
+    private bool ReachedTarget()
+    {
+        if (agent.remainingDistance <= agent.stoppingDistance) return true;
+        else return false;
     }
 
     public void OnSingleTask(Task task)
@@ -126,17 +126,4 @@ public class Robot : MonoBehaviour
         haveBox = false;
     }
 
-    private void ChangeAnimation()
-    {
-        if(state == State.idle)
-        {
-            animator.ResetTrigger("Walk");
-            animator.SetTrigger("Stop");
-        }
-        else
-        {
-            animator.ResetTrigger("Stop");
-            animator.SetTrigger("Walk");
-        }
-    }
 }
