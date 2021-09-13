@@ -48,6 +48,7 @@ public class Robot : MonoBehaviour
         }
 
         SetIdle();
+        SetAlarm();
     }
 
     private bool ReachedTarget()
@@ -61,13 +62,18 @@ public class Robot : MonoBehaviour
         if(selected && !idle && agent.velocity.magnitude == 0)
         {
             idle = true;
-            uiManager.SetIdleState();
+            uiManager.SetState("Idle");
         }
         else if (selected && idle && agent.velocity.magnitude > 0)
         {
             idle = false;
             uiManager.ShowTaskList(taskPool);
         }
+    }
+
+    private void SetAlarm()
+    {
+        if (selected && alarm) uiManager.SetState("Move to Shelter");
     }
 
     public void SetData(Transform spawnerPosition, float instantiationDistance, UIManager manager)
@@ -110,6 +116,7 @@ public class Robot : MonoBehaviour
     {
         alarm = false;
         SetActiveTask(taskPool[taskIndex]);
+        uiManager.ShowTaskList(taskPool);
     }
 
     private void SetActiveTask(Task task)
@@ -123,7 +130,7 @@ public class Robot : MonoBehaviour
         if (!selected)
         {
             Select();
-            if (agent.velocity.magnitude == 0) uiManager.SetIdleState();
+            if (agent.velocity.magnitude == 0) uiManager.SetState("Idle");
             else uiManager.ShowTaskList(taskPool);
         }
         else Deselect();
@@ -134,12 +141,14 @@ public class Robot : MonoBehaviour
         robotSelect.Raise();
         selectMarker.SetActive(true);
         selected = true;
+        uiManager.ShowPortrait();
     }
 
     public void Deselect()
     {
         selectMarker.SetActive(false);
         selected = false;
+        uiManager.HidePortrait();
     }
 
     public bool NeedsBox()
