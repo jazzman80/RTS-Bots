@@ -17,7 +17,7 @@ public class Robot : MonoBehaviour
     [SerializeField] GameObject selectMarker;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GameEvent robotSelect;
-    [SerializeField] Animator animator;
+    [SerializeField] GameEvent robotInShelter;
 
     List<Task> taskPool = new List<Task>();
     int taskIndex = 0;
@@ -50,6 +50,11 @@ public class Robot : MonoBehaviour
     {
         if (agent.remainingDistance <= agent.stoppingDistance) return true;
         else return false;
+    }
+
+    public void SetPosition(Transform spawnerPosition, float instantiationDistance)
+    {
+        transform.position = spawnerPosition.position + new Vector3(instantiationDistance, instantiationDistance, 0); 
     }
 
     public void OnSingleTask(Task task)
@@ -126,4 +131,8 @@ public class Robot : MonoBehaviour
         haveBox = false;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Shelter")) robotInShelter.Raise();
+    }
 }
