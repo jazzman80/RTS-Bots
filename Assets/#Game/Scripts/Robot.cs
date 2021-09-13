@@ -7,7 +7,6 @@ public class Robot : MonoBehaviour
 {
     public enum State
     {
-        idle,
         moveToPoint,
         moveToStorage,
         moveToFabric,
@@ -18,18 +17,19 @@ public class Robot : MonoBehaviour
     [SerializeField] GameObject selectMarker;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GameEvent robotSelect;
+    [SerializeField] GameEvent robotInShelter;
 
     List<Task> taskPool = new List<Task>();
     int taskIndex = 0;
     bool selected = false;
     bool alarm = false;
     bool haveBox = false;
-    State state = State.idle;
     Task startTask;
+    State state;
 
     private void Start()
     {
-        startTask.SetData(transform, "Idle");
+        startTask.SetData(transform, "Terrain");
         SetActiveTask(startTask);
         taskPool.Add(startTask);
     }
@@ -37,14 +37,24 @@ public class Robot : MonoBehaviour
     private void Update()
     {
 
-        if (agent.remainingDistance == 0 && taskPool.Count > 1 && !alarm)
+        if (ReachedTarget() && taskPool.Count > 1 && !alarm)
         {
             taskIndex++;
             if (taskIndex >= taskPool.Count) taskIndex = 0;
 
             SetActiveTask(taskPool[taskIndex]);
         }
+    }
 
+    private bool ReachedTarget()
+    {
+        if (agent.remainingDistance <= agent.stoppingDistance) return true;
+        else return false;
+    }
+
+    public void SetPosition(Transform spawnerPosition, float instantiationDistance)
+    {
+        transform.position = spawnerPosition.position + new Vector3(instantiationDistance, instantiationDistance, 0); 
     }
 
     public void OnSingleTask(Task task)
@@ -119,5 +129,10 @@ public class Robot : MonoBehaviour
     public void GiveBox()
     {
         haveBox = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Shelter")) robotInShelter.Raise();
     }
 }

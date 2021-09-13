@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
+    [SerializeField] Animator animator;
+    
     Transform robotTransform;
     bool isTransported = false;
 
@@ -14,6 +16,11 @@ public class Box : MonoBehaviour
             transform.position = robotTransform.position;
             transform.rotation = robotTransform.rotation;
         }
+    }
+
+    private void OnEnable()
+    {
+        animator.Play("Box Create");
     }
 
     public void ResetPosition(Transform storage)
@@ -33,6 +40,12 @@ public class Box : MonoBehaviour
         isTransported = false;
         transform.position = fabricTransform.position;
         transform.rotation = fabricTransform.rotation;
+        animator.Play("Box Recycle");
+    }
+
+    public void OnRecycleAnimationDone()
+    {
         gameObject.SetActive(false);
     }
+
 }

@@ -182,6 +182,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5507827777214798407, guid: 2b2505068e586ef48b49d473434047f2, type: 3}
+      propertyPath: robotSpawner
+      value: 
+      objectReference: {fileID: 2024532799}
     - target: {fileID: 8772080603474125636, guid: 2b2505068e586ef48b49d473434047f2, type: 3}
       propertyPath: m_Name
       value: Shelter
@@ -427,6 +431,10 @@ PrefabInstance:
     - target: {fileID: 750643492464830651, guid: 4841a094cc64130498b03300954b893a, type: 3}
       propertyPath: m_Name
       value: Robot Kyle
+      objectReference: {fileID: 0}
+    - target: {fileID: 750643492464830651, guid: 4841a094cc64130498b03300954b893a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4337401433009019560, guid: 4841a094cc64130498b03300954b893a, type: 3}
       propertyPath: m_RootOrder
@@ -791,6 +799,10 @@ PrefabInstance:
     - target: {fileID: 750643492464830651, guid: 4841a094cc64130498b03300954b893a, type: 3}
       propertyPath: m_Name
       value: Robot Kyle 01
+      objectReference: {fileID: 0}
+    - target: {fileID: 750643492464830651, guid: 4841a094cc64130498b03300954b893a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4337401433009019560, guid: 4841a094cc64130498b03300954b893a, type: 3}
       propertyPath: m_RootOrder
@@ -1473,6 +1485,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2024532797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2024532798}
+  - component: {fileID: 2024532799}
+  m_Layer: 0
+  m_Name: Robot Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2024532798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024532797}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 603.06, y: 1.01, z: 507.81}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2024532799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024532797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f5cfdc7c40ad2449ac97acd32a1a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robotPrefab: {fileID: 4529955418562070622, guid: 4841a094cc64130498b03300954b893a, type: 3}
+  robotsCount: 3
+  instantiationDistance: 2
 --- !u!1 &2052558452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,6 +1647,10 @@ PrefabInstance:
     - target: {fileID: 750643492464830651, guid: 4841a094cc64130498b03300954b893a, type: 3}
       propertyPath: m_Name
       value: Robot Kyle 02
+      objectReference: {fileID: 0}
+    - target: {fileID: 750643492464830651, guid: 4841a094cc64130498b03300954b893a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4337401433009019560, guid: 4841a094cc64130498b03300954b893a, type: 3}
       propertyPath: m_RootOrder
