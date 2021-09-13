@@ -8,6 +8,8 @@ public class RobotSpawner : MonoBehaviour
     [SerializeField] int robotsCount;
     [SerializeField] float instantiationDistance;
 
+    public int RobotsCount { get => robotsCount; }
+
     List<Robot> robotsPool = new List<Robot>();
 
     private void Start()
@@ -16,6 +18,7 @@ public class RobotSpawner : MonoBehaviour
         {
             Robot newRobot = Instantiate(robotPrefab);
             newRobot.SetPosition(transform, i * instantiationDistance);
+            robotsPool.Add(newRobot);
         }
     }
 

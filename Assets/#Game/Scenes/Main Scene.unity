@@ -182,6 +182,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5507827777214798407, guid: 2b2505068e586ef48b49d473434047f2, type: 3}
+      propertyPath: robotSpawner
+      value: 
+      objectReference: {fileID: 2024532799}
     - target: {fileID: 8772080603474125636, guid: 2b2505068e586ef48b49d473434047f2, type: 3}
       propertyPath: m_Name
       value: Shelter

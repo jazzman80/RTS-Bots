@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648335186350305823}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.78, y: 0, z: -1.15}
+  m_LocalPosition: {x: 1.7, y: 0, z: -1.15}
   m_LocalScale: {x: 0.2, y: 5.2, z: 1}
   m_Children: []
   m_Father: {fileID: 8772080603474231140}
@@ -225,7 +225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6007977694312534702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.77, y: 0, z: -1.15}
+  m_LocalPosition: {x: -1.66, y: 0, z: -1.15}
   m_LocalScale: {x: 0.2, y: 5.2, z: 1}
   m_Children: []
   m_Father: {fileID: 8772080603474231140}
@@ -321,7 +321,6 @@ GameObject:
   - component: {fileID: 1168496987136389473}
   - component: {fileID: 6295031946229370372}
   - component: {fileID: 8507178335065644486}
-  - component: {fileID: 6486792946052206202}
   m_Layer: 0
   m_Name: Back Wall
   m_TagString: Untagged
@@ -392,25 +391,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &6486792946052206202
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6724636044526081281}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 967dbe20d0a4366489b7a442530d46c6, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8772080603474125636
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,8 +402,10 @@ GameObject:
   - component: {fileID: 8772080603474231140}
   - component: {fileID: 8772080603472904004}
   - component: {fileID: 8772080603471936900}
-  - component: {fileID: 7648106241186796420}
   - component: {fileID: 5936888264540546646}
+  - component: {fileID: 5507827777214798407}
+  - component: {fileID: 496051080575670671}
+  - component: {fileID: 9199801915508314305}
   m_Layer: 0
   m_Name: Shelter
   m_TagString: Shelter
@@ -499,19 +481,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7648106241186796420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8772080603474125636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fb9a9b9b70e83846b4120a09fcb4548, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetPoint: {fileID: 7639802416456992524}
 --- !u!65 &5936888264540546646
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -520,8 +489,80 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8772080603474125636}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3.9325747, y: 5.2760963, z: 3.3280315}
   m_Center: {x: 0, y: 0.0000028610234, z: 0.0000001192093}
+--- !u!114 &5507827777214798407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8772080603474125636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 649ab718bd6576048aa067fb3eceb981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPoint: {fileID: 7639802416456992524}
+  robotsCount: 0
+  robotSpawner: {fileID: 0}
+  gatesAnimator: {fileID: 1691320806062801372}
+--- !u!114 &496051080575670671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8772080603474125636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a75375636079d48b0c6e5d178b94b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: e7c3caa7620dbcd4ebe202f15f10c221, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5507827777214798407}
+        m_TargetAssemblyTypeName: Shelter, Assembly-CSharp
+        m_MethodName: OnRobotInside
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &9199801915508314305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8772080603474125636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a75375636079d48b0c6e5d178b94b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 3fa1359d78c994c40881c2a9903a097f, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5507827777214798407}
+        m_TargetAssemblyTypeName: Shelter, Assembly-CSharp
+        m_MethodName: OnAlarmStop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

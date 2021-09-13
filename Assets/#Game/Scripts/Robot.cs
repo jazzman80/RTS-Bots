@@ -17,7 +17,7 @@ public class Robot : MonoBehaviour
     [SerializeField] GameObject selectMarker;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GameEvent robotSelect;
-    [SerializeField] Animator animator;
+    [SerializeField] GameEvent robotInShelter;
 
     List<Task> taskPool = new List<Task>();
     int taskIndex = 0;
@@ -131,4 +131,8 @@ public class Robot : MonoBehaviour
         haveBox = false;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Shelter")) robotInShelter.Raise();
+    }
 }
