@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Storage : MonoBehaviour
 {
-    [SerializeField] float boxGenerationDelay;
     [SerializeField] Box boxPrefab;
     [SerializeField] Transform generationPoint;
     

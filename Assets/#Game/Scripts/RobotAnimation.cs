@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,8 +6,6 @@ public class RobotAnimation : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator animator;
 
-    float speed;
-    float previousSpeed;
     private enum State
     {
         idle,
@@ -21,7 +17,7 @@ public class RobotAnimation : MonoBehaviour
 
     private void Update()
     {
-        speed = agent.velocity.magnitude;
+        float speed = agent.velocity.magnitude;
 
         if (speed == 0) state = State.idle;
         else state = State.walk;

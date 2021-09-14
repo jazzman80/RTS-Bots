@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// Alarm button fuctions
 public class AlarmButton : MonoBehaviour
 {
     [SerializeField] GameObject alarmButton;
