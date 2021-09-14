@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Box : MonoBehaviour
@@ -11,6 +9,7 @@ public class Box : MonoBehaviour
 
     private void Update()
     {
+        // Update position if transported by robot
         if (isTransported)
         {
             transform.position = robotTransform.position;
