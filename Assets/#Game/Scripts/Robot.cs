@@ -18,6 +18,7 @@ public class Robot : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GameEvent robotSelect;
     [SerializeField] GameEvent robotInShelter;
+    [SerializeField] ParticleSystem dustFX;
 
     List<Task> taskPool = new List<Task>();
     UIManager uiManager;
@@ -63,11 +64,13 @@ public class Robot : MonoBehaviour
         {
             idle = true;
             uiManager.SetState("Idle");
+            dustFX.Stop();
         }
         else if (selected && idle && agent.velocity.magnitude > 0)
         {
             idle = false;
             uiManager.ShowTaskList(taskPool);
+            dustFX.Play();
         }
     }
 
